@@ -1,26 +1,369 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base colors */
+  --background: #121212;
+  --foreground: #ffffff;
+  --card: #1e1e1e;
+  --card-foreground: #ffffff;
+  --popover: #1e1e1e;
+  --popover-foreground: #ffffff;
+  --primary: #2e6db4;
+  --primary-foreground: #ffffff;
+  --secondary: #2a2a2a;
+  --secondary-foreground: #ffffff;
+  --muted: #2a2a2a;
+  --muted-foreground: #a1a1aa;
+  --accent: #333333;
+  --accent-foreground: #ffffff;
+  --destructive: #df0024;
+  --destructive-foreground: #ffffff;
+  --border: #404040;
+  --input: #2a2a2a;
+  --ring: #2e6db4;
+  
+  /* PlayStation colors */
+  --primary-red: #df0024;
+  --primary-yellow: #f3c300;
+  --primary-teal: #00ab9f;
+  --primary-blue: #2e6db4;
+  
+  /* Gray scale */
+  --gray-50: #fafafa;
+  --gray-100: #f4f4f5;
+  --gray-200: #e4e4e7;
+  --gray-300: #d4d4d8;
+  --gray-400: #a1a1aa;
+  --gray-500: #71717a;
+  --gray-600: #52525b;
+  --gray-700: #3f3f46;
+  --gray-800: #27272a;
+  --gray-900: #18181b;
+  --gray-950: #09090b;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme="light"] {
+  /* Base colors */
+  --background: #f5f5f5;
+  --foreground: #09090b;
+  --card: #ffffff;
+  --card-foreground: #09090b;
+  --popover: #ffffff;
+  --popover-foreground: #09090b;
+  --primary: #2e6db4;
+  --primary-foreground: #ffffff;
+  --secondary: #f0f0f0;
+  --secondary-foreground: #09090b;
+  --muted: #f0f0f0;
+  --muted-foreground: #71717a;
+  --accent: #f0f0f0;
+  --accent-foreground: #09090b;
+  --destructive: #df0024;
+  --destructive-foreground: #ffffff;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #2e6db4;
+  
+  /* Gray scale for light mode */
+  --gray-50: #09090b;
+  --gray-100: #18181b;
+  --gray-200: #27272a;
+  --gray-300: #3f3f46;
+  --gray-400: #52525b;
+  --gray-500: #71717a;
+  --gray-600: #a1a1aa;
+  --gray-700: #d4d4d8;
+  --gray-800: #e4e4e7;
+  --gray-900: #f4f4f5;
+  --gray-950: #fafafa;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--card);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-blue);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-teal);
+}
+
+/* Custom scrollbar for game list */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--primary-blue);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-teal);
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* Smooth animations */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Theme gradients */
+.theme-gradient {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-teal) 100%);
+}
+
+.theme-gradient-red {
+  background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-yellow) 100%);
+}
+
+.theme-gradient-full {
+  background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-yellow) 25%, var(--primary-teal) 50%, var(--primary-blue) 100%);
+}
+
+/* Popular badge animations */
+.popular-badge {
+  animation: popularPulse 2s ease-in-out infinite;
+  background: linear-gradient(45deg, var(--primary-yellow), var(--primary-red), var(--primary-teal));
+  background-size: 200% 200%;
+  animation: popularGradient 3s ease infinite, popularPulse 2s ease-in-out infinite;
+}
+
+@keyframes popularPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(251, 191, 36, 0);
+  }
+}
+
+@keyframes popularGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.popular-badge:hover {
+  animation-play-state: paused;
+  transform: scale(1.1);
+}
+
+/* PlayStation Color Animations */
+@keyframes playstationGlow {
+  0% {
+    box-shadow: 0 0 5px #df0024, 0 0 10px #df0024, 0 0 15px #df0024;
+  }
+  25% {
+    box-shadow: 0 0 5px #f3c300, 0 0 10px #f3c300, 0 0 15px #f3c300;
+  }
+  50% {
+    box-shadow: 0 0 5px #00ab9f, 0 0 10px #00ab9f, 0 0 15px #00ab9f;
+  }
+  75% {
+    box-shadow: 0 0 5px #2e6db4, 0 0 10px #2e6db4, 0 0 15px #2e6db4;
+  }
+  100% {
+    box-shadow: 0 0 5px #df0024, 0 0 10px #df0024, 0 0 15px #df0024;
+  }
+}
+
+@keyframes playstationBorder {
+  0% {
+    border-color: #df0024;
+    box-shadow: 0 0 10px rgba(223, 0, 36, 0.3);
+  }
+  25% {
+    border-color: #f3c300;
+    box-shadow: 0 0 10px rgba(243, 195, 0, 0.3);
+  }
+  50% {
+    border-color: #00ab9f;
+    box-shadow: 0 0 10px rgba(0, 171, 159, 0.3);
+  }
+  75% {
+    border-color: #2e6db4;
+    box-shadow: 0 0 10px rgba(46, 109, 180, 0.3);
+  }
+  100% {
+    border-color: #df0024;
+    box-shadow: 0 0 10px rgba(223, 0, 36, 0.3);
+  }
+}
+
+@keyframes playstationOutline {
+  0% {
+    outline: 2px solid #df0024;
+    outline-offset: 2px;
+  }
+  25% {
+    outline: 2px solid #f3c300;
+    outline-offset: 3px;
+  }
+  50% {
+    outline: 2px solid #00ab9f;
+    outline-offset: 2px;
+  }
+  75% {
+    outline: 2px solid #2e6db4;
+    outline-offset: 3px;
+  }
+  100% {
+    outline: 2px solid #df0024;
+    outline-offset: 2px;
+  }
+}
+
+@keyframes playstationPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes colorWave {
+  0% {
+    background: linear-gradient(90deg, #df0024 0%, #f3c300 25%, #00ab9f 50%, #2e6db4 75%, #df0024 100%);
+    background-size: 400% 100%;
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes floatingIcons {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-3deg);
+  }
+}
+
+@keyframes shimmerOutline {
+  0% {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* PlayStation themed utility classes - OUTLINE ONLY */
+.ps-glow {
+  animation: playstationGlow 4s ease-in-out infinite;
+}
+
+.ps-border {
+  animation: playstationBorder 3s ease-in-out infinite;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.ps-outline {
+  animation: playstationOutline 3s ease-in-out infinite;
+}
+
+.ps-pulse {
+  animation: playstationPulse 3s ease-in-out infinite;
+}
+
+.ps-wave {
+  position: relative;
+}
+
+.ps-wave::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #df0024 0%, #f3c300 25%, #00ab9f 50%, #2e6db4 75%, #df0024 100%);
+  background-size: 400% 100%;
+  animation: colorWave 6s ease-in-out infinite;
+  z-index: -1;
+}
+
+.ps-float {
+  animation: floatingIcons 4s ease-in-out infinite;
+}
+
+.ps-shimmer {
+  animation: shimmerOutline 2s infinite;
+}
+
+/* Hover effects with PlayStation colors - OUTLINE ONLY */
+.ps-hover-red:hover {
+  border-color: #df0024;
+  box-shadow: 0 0 20px rgba(223, 0, 36, 0.5);
+  transition: all 0.3s ease;
+}
+
+.ps-hover-yellow:hover {
+  border-color: #f3c300;
+  box-shadow: 0 0 20px rgba(243, 195, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.ps-hover-teal:hover {
+  border-color: #00ab9f;
+  box-shadow: 0 0 20px rgba(0, 171, 159, 0.5);
+  transition: all 0.3s ease;
+}
+
+.ps-hover-blue:hover {
+  border-color: #2e6db4;
+  box-shadow: 0 0 20px rgba(46, 109, 180, 0.5);
+  transition: all 0.3s ease;
 }
