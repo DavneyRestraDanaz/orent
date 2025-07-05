@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { Gamepad2, Menu, X, User, LayoutDashboard } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import ThemeToggle from './ThemeToggle';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,7 +34,7 @@ const Navigation = () => {
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center space-x-3"
           >
-            <Link href="/" className="flex items-center space-x-3 border border-primary/30 px-2 py-1 rounded-lg hover:border-primary/60 transition-colors">
+            <Link href="/" className="flex items-center space-x-3 px-2 py-1 rounded-lg hover:bg-secondary/50 transition-colors">
               <Gamepad2 className="w-8 h-8 text-primary" />
               <h1 className="text-2xl font-bold text-foreground">Orent</h1>
             </Link>
@@ -47,7 +46,7 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`transition-colors ${
+                className={`font-semibold transition-colors ${
                   isActive(item.href)
                     ? 'text-primary'
                     : 'text-foreground hover:text-primary'
@@ -78,7 +77,6 @@ const Navigation = () => {
             >
               <User className="w-5 h-5" />
             </Link>
-            <ThemeToggle />
           </nav>
 
           {/* Mobile Menu Button */}
@@ -103,7 +101,7 @@ const Navigation = () => {
                 key={item.href}
                 href={item.href}
                 onClick={() => setIsMenuOpen(false)}
-                className={`block px-4 py-2 rounded-lg transition-colors ${
+                className={`block px-4 py-2 rounded-lg font-semibold transition-colors ${
                   isActive(item.href)
                     ? 'bg-primary-blue text-primary-foreground'
                     : 'text-foreground hover:bg-secondary hover:text-primary-yellow'
@@ -136,9 +134,6 @@ const Navigation = () => {
               <User className="w-5 h-5" />
               <span>Profile</span>
             </Link>
-            <div className="flex justify-center mt-4">
-              <ThemeToggle />
-            </div>
           </motion.nav>
         )}
       </div>

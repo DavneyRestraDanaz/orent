@@ -187,35 +187,81 @@ export default function About() {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      <div className="container mx-auto px-4 py-8">
-        {/* Hero Section */}
+      <div className="container mx-auto px-4 pt-6 pb-16">
+        {/* Hero Section with Key Info */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          className="text-center mb-8"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Tentang <span className="text-primary">Orent</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
             Kami adalah penyedia layanan rental PlayStation terpercaya di Bandung yang 
             berkomitmen memberikan pengalaman gaming terbaik untuk semua kalangan.
           </p>
+          
+          <div className="flex flex-wrap justify-center gap-4 mt-6 mb-8">
+            <Link href="#story-section">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-2 bg-card border border-border rounded-full text-foreground hover:bg-accent hover:text-accent-foreground transition-colors shadow-sm"
+              >
+                Cerita Kami
+              </motion.button>
+            </Link>
+            <Link href="#values-section">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-2 bg-card border border-border rounded-full text-foreground hover:bg-accent hover:text-accent-foreground transition-colors shadow-sm"
+              >
+                Nilai-Nilai
+              </motion.button>
+            </Link>
+            <Link href="#team-section">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-2 bg-card border border-border rounded-full text-foreground hover:bg-accent hover:text-accent-foreground transition-colors shadow-sm"
+              >
+                Tim Kami
+              </motion.button>
+            </Link>
+            <Link href="#faq-section">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-2 bg-card border border-border rounded-full text-foreground hover:bg-accent hover:text-accent-foreground transition-colors shadow-sm"
+              >
+                FAQ
+              </motion.button>
+            </Link>
+            <Link href="#contact-section">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-2 bg-primary text-white rounded-full hover:bg-primary-dark transition-colors shadow-sm"
+              >
+                Hubungi Kami
+              </motion.button>
+            </Link>
+          </div>
         </motion.div>
 
         {/* Stats Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
         >
           {stats.map((stat, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: index * 0.1 }}
               className="bg-card backdrop-blur-sm border border-border rounded-xl p-6 text-center"
             >
@@ -228,10 +274,11 @@ export default function About() {
 
         {/* Our Story */}
         <motion.div
+          id="story-section"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="grid lg:grid-cols-2 gap-12 items-center mb-16"
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="grid lg:grid-cols-2 gap-12 items-center mb-16 scroll-mt-24"
         >
           <div>
             <h3 className="text-3xl font-bold text-foreground mb-6">Cerita Kami</h3>
@@ -252,23 +299,24 @@ export default function About() {
             </div>
           </div>
           
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8">
+          <div className="bg-card backdrop-blur-sm border border-border rounded-xl p-8 shadow-md">
             <div className="flex items-center justify-center h-64">
-              <Gamepad2 className="w-32 h-32 text-blue-400" />
+              <Gamepad2 className="w-32 h-32 text-primary" />
             </div>
           </div>
         </motion.div>
 
         {/* Our Values */}
         <motion.div
+          id="values-section"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mb-16 scroll-mt-24"
         >
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-white mb-4">Nilai-Nilai Kami</h3>
-            <p className="text-gray-300 text-lg">Prinsip yang menjadi fondasi dalam setiap layanan kami</p>
+            <h3 className="text-3xl font-bold text-foreground mb-4">Nilai-Nilai Kami</h3>
+            <p className="text-muted-foreground text-lg">Prinsip yang menjadi fondasi dalam setiap layanan kami</p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -276,20 +324,19 @@ export default function About() {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6"
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + index * 0.1 }}
+                className="bg-card backdrop-blur-sm border border-border rounded-xl p-6 shadow-sm"
               >
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
                       <value.icon className="w-6 h-6 text-white" />
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-xl font-semibold text-white mb-2">{value.title}</h4>
-                    <p className="text-gray-300">{value.description}</p>
+                    <h4 className="text-xl font-semibold text-foreground mb-2">{value.title}</h4>
+                    <p className="text-muted-foreground">{value.description}</p>
                   </div>
                 </div>
               </motion.div>
@@ -300,28 +347,28 @@ export default function About() {
         {/* Mission & Vision */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
           className="grid lg:grid-cols-2 gap-8 mb-16"
         >
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8">
+          <div className="bg-card backdrop-blur-sm border border-border rounded-xl p-8 shadow-sm">
             <div className="flex items-center space-x-3 mb-6">
-              <Target className="w-8 h-8 text-blue-400" />
-              <h3 className="text-2xl font-bold text-white">Misi Kami</h3>
+              <Target className="w-8 h-8 text-primary" />
+              <h3 className="text-2xl font-bold text-foreground">Misi Kami</h3>
             </div>
-            <p className="text-gray-300 leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed">
               Menyediakan layanan rental PlayStation berkualitas tinggi dengan harga terjangkau, 
               membangun komunitas gaming yang positif, dan memberikan pengalaman bermain yang 
               tak terlupakan untuk semua kalangan di Bandung.
             </p>
           </div>
 
-          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8">
+          <div className="bg-card backdrop-blur-sm border border-border rounded-xl p-8 shadow-sm">
             <div className="flex items-center space-x-3 mb-6">
-              <Award className="w-8 h-8 text-purple-400" />
-              <h3 className="text-2xl font-bold text-white">Visi Kami</h3>
+              <Award className="w-8 h-8 text-primary-dark" />
+              <h3 className="text-2xl font-bold text-foreground">Visi Kami</h3>
             </div>
-            <p className="text-gray-300 leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed">
               Menjadi penyedia layanan rental PlayStation terdepan di Indonesia yang dikenal 
               karena kualitas, kepercayaan, dan kontribusi positif terhadap industri gaming lokal.
             </p>
@@ -330,14 +377,15 @@ export default function About() {
 
         {/* Team Section */}
         <motion.div
+          id="team-section"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8 }}
+          className="mb-16 scroll-mt-24"
         >
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-white mb-4">Tim Kami</h3>
-            <p className="text-gray-300 text-lg">Orang-orang hebat di balik Orent</p>
+            <h3 className="text-3xl font-bold text-foreground mb-4">Tim Kami</h3>
+            <p className="text-muted-foreground text-lg">Orang-orang hebat di balik Orent</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -347,17 +395,16 @@ export default function About() {
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center"
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9 + index * 0.1 }}
+                  className="bg-card backdrop-blur-sm border border-border rounded-xl p-6 text-center shadow-sm"
                 >
-                  <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                     <IconComponent className="w-10 h-10 text-white" />
                   </div>
-                  <h4 className="text-xl font-semibold text-white mb-2">{member.name}</h4>
-                  <p className="text-blue-400 font-medium mb-3">{member.role}</p>
-                  <p className="text-gray-300 text-sm">{member.bio}</p>
+                  <h4 className="text-xl font-semibold text-foreground mb-2">{member.name}</h4>
+                  <p className="text-primary font-medium mb-3">{member.role}</p>
+                  <p className="text-muted-foreground text-sm">{member.bio}</p>
                 </motion.div>
               );
             })}
@@ -367,13 +414,13 @@ export default function About() {
         {/* Why Choose Us */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.7 }}
           className="mb-16"
         >
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-white mb-4">Mengapa Memilih Orent?</h3>
-            <p className="text-gray-300 text-lg">Keunggulan yang membuat kami berbeda</p>
+            <h3 className="text-3xl font-bold text-foreground mb-4">Mengapa Memilih Orent?</h3>
+            <p className="text-muted-foreground text-lg">Keunggulan yang membuat kami berbeda</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -391,13 +438,12 @@ export default function About() {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.8 + index * 0.1 }}
                 className="flex items-center space-x-3"
               >
-                <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
-                <span className="text-gray-300">{feature}</span>
+                <CheckCircle className="w-6 h-6 text-primary flex-shrink-0" />
+                <span className="text-foreground">{feature}</span>
               </motion.div>
             ))}
           </div>
@@ -405,32 +451,33 @@ export default function About() {
 
         {/* FAQ Section */}
         <motion.div
+          id="faq-section"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2 }}
+          className="mb-16 scroll-mt-24"
         >
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-white mb-4">Pertanyaan Umum</h3>
-            <p className="text-gray-300 text-lg">Temukan jawaban untuk pertanyaan yang sering diajukan</p>
+            <h3 className="text-3xl font-bold text-foreground mb-4">Pertanyaan Umum</h3>
+            <p className="text-muted-foreground text-lg">Temukan jawaban untuk pertanyaan yang sering diajukan</p>
           </div>
 
           <div className="max-w-3xl mx-auto space-y-4">
-            {faqs.map((faq) => (
+            {faqs.map((faq, index) => (
               <motion.div
                 key={faq.id}
                 initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden"
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.3 + index * 0.1 }}
+                className="bg-card backdrop-blur-sm border border-border rounded-xl overflow-hidden shadow-sm"
               >
                 <button
                   onClick={() => setSelectedFAQ(selectedFAQ === faq.id ? null : faq.id)}
-                  className="w-full p-6 text-left flex items-center justify-between hover:bg-white/5 transition-colors"
+                  className="w-full p-6 text-left flex items-center justify-between hover:bg-accent/20 transition-colors"
                 >
-                  <span className="text-white font-medium pr-4">{faq.question}</span>
+                  <span className="text-foreground font-medium pr-4">{faq.question}</span>
                   <ChevronDown 
-                    className={`w-5 h-5 text-gray-400 transition-transform ${
+                    className={`w-5 h-5 text-muted-foreground transition-transform ${
                       selectedFAQ === faq.id ? 'rotate-180' : ''
                     }`}
                   />
@@ -442,7 +489,7 @@ export default function About() {
                     exit={{ opacity: 0, height: 0 }}
                     className="px-6 pb-6"
                   >
-                    <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
+                    <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
                   </motion.div>
                 )}
               </motion.div>
@@ -454,77 +501,76 @@ export default function About() {
         <motion.div
           id="contact-section"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-16 scroll-mt-24"
         >
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-white mb-4">Hubungi Kami</h3>
-            <p className="text-gray-300 text-lg">Siap membantu Anda 24/7</p>
+            <h3 className="text-3xl font-bold text-foreground mb-4">Hubungi Kami</h3>
+            <p className="text-muted-foreground text-lg">Siap membantu Anda 24/7</p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Info */}
             <div className="space-y-8">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <div className="bg-card backdrop-blur-sm border border-border rounded-xl p-6 shadow-sm">
                 <div className="flex items-center space-x-4 mb-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
                     <MapPin className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold">Alamat</h4>
-                    <p className="text-gray-300">Jl. Gaming Center No. 123, Bandung</p>
+                    <h4 className="text-foreground font-semibold">Alamat</h4>
+                    <p className="text-muted-foreground">Jl. Gaming Center No. 123, Bandung</p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <div className="bg-card backdrop-blur-sm border border-border rounded-xl p-6 shadow-sm">
                 <div className="flex items-center space-x-4 mb-4">
-                  <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center">
+                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
                     <Phone className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold">Telepon</h4>
-                    <p className="text-gray-300">+62 812-3456-7890</p>
+                    <h4 className="text-foreground font-semibold">Telepon</h4>
+                    <p className="text-muted-foreground">+62 812-3456-7890</p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <div className="bg-card backdrop-blur-sm border border-border rounded-xl p-6 shadow-sm">
                 <div className="flex items-center space-x-4 mb-4">
-                  <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center">
+                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
                     <Mail className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold">Email</h4>
-                    <p className="text-gray-300">info@orent.id</p>
+                    <h4 className="text-foreground font-semibold">Email</h4>
+                    <p className="text-muted-foreground">info@orent.id</p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+              <div className="bg-card backdrop-blur-sm border border-border rounded-xl p-6 shadow-sm">
                 <div className="flex items-center space-x-4 mb-4">
-                  <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center">
+                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
                     <MessageCircle className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold">WhatsApp</h4>
-                    <p className="text-gray-300">+62 812-3456-7890</p>
+                    <h4 className="text-foreground font-semibold">WhatsApp</h4>
+                    <p className="text-muted-foreground">+62 812-3456-7890</p>
                   </div>
                 </div>
               </div>
 
               {/* Testimonials */}
               <div className="space-y-4">
-                <h4 className="text-xl font-semibold text-white mb-4">Apa Kata Pelanggan</h4>
+                <h4 className="text-xl font-semibold text-foreground mb-4">Apa Kata Pelanggan</h4>
                 {testimonials.map((testimonial) => (
-                  <div key={testimonial.id} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4">
+                  <div key={testimonial.id} className="bg-card backdrop-blur-sm border border-border rounded-xl p-4">
                     <div className="flex items-start space-x-3">
-                      <Quote className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
+                      <Quote className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                       <div className="flex-1">
-                        <p className="text-gray-300 text-sm mb-2">{testimonial.comment}</p>
+                        <p className="text-muted-foreground text-sm mb-2">{testimonial.comment}</p>
                         <div className="flex items-center justify-between">
-                          <span className="text-white font-medium text-sm">{testimonial.name}</span>
+                          <span className="text-foreground font-medium text-sm">{testimonial.name}</span>
                           <div className="flex items-center">
                             {[...Array(testimonial.rating)].map((_, i) => (
                               <Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
@@ -539,8 +585,8 @@ export default function About() {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8">
-              <h4 className="text-2xl font-bold text-white mb-6">Kirim Pesan</h4>
+            <div className="bg-card backdrop-blur-sm border border-border rounded-xl p-8">
+              <h4 className="text-2xl font-bold text-foreground mb-6">Kirim Pesan</h4>
               
               {isSubmitted ? (
                 <motion.div
@@ -549,32 +595,32 @@ export default function About() {
                   className="text-center py-12"
                 >
                   <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
-                  <h5 className="text-xl font-semibold text-white mb-2">Pesan Terkirim!</h5>
-                  <p className="text-gray-300">Terima kasih, kami akan segera menghubungi Anda.</p>
+                  <h5 className="text-xl font-semibold text-foreground mb-2">Pesan Terkirim!</h5>
+                  <p className="text-muted-foreground">Terima kasih, kami akan segera menghubungi Anda.</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-gray-300 mb-2">Nama Lengkap</label>
+                      <label className="block text-muted-foreground mb-2">Nama Lengkap</label>
                       <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
+                        className="w-full bg-card/30 border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-colors"
                         placeholder="Masukkan nama lengkap"
                         required
                       />
                     </div>
                     <div>
-                      <label className="block text-gray-300 mb-2">No. Telepon</label>
+                      <label className="block text-muted-foreground mb-2">No. Telepon</label>
                       <input
                         type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
+                        className="w-full bg-card/30 border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-colors"
                         placeholder="08xx-xxxx-xxxx"
                         required
                       />
@@ -582,13 +628,13 @@ export default function About() {
                   </div>
 
                   <div>
-                    <label className="block text-gray-300 mb-2">Email</label>
+                    <label className="block text-muted-foreground mb-2">Email</label>
                     <input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
+                      className="w-full bg-card/30 border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-colors"
                       placeholder="email@example.com"
                       required
                     />
@@ -596,68 +642,68 @@ export default function About() {
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-gray-300 mb-2">Konsol yang Diminati</label>
+                      <label className="block text-muted-foreground mb-2">Konsol yang Diminati</label>
                       <select
                         name="console"
                         value={formData.console}
                         onChange={handleInputChange}
-                        className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors"
+                        className="w-full bg-card/30 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors"
                         required
                       >
-                        <option value="" className="bg-gray-800">Pilih Konsol</option>
-                        <option value="ps4-pro" className="bg-gray-800">PlayStation 4 Pro</option>
-                        <option value="ps4-slim" className="bg-gray-800">PlayStation 4 Slim</option>
-                        <option value="ps4-standard" className="bg-gray-800">PlayStation 4 Standard</option>
-                        <option value="ps3-super-slim" className="bg-gray-800">PlayStation 3 Super Slim</option>
-                        <option value="ps3-slim" className="bg-gray-800">PlayStation 3 Slim</option>
-                        <option value="ps3-fat" className="bg-gray-800">PlayStation 3 Fat</option>
+                        <option value="" className="bg-card">Pilih Konsol</option>
+                        <option value="ps4-pro" className="bg-card">PlayStation 4 Pro</option>
+                        <option value="ps4-slim" className="bg-card">PlayStation 4 Slim</option>
+                        <option value="ps4-standard" className="bg-card">PlayStation 4 Standard</option>
+                        <option value="ps3-super-slim" className="bg-card">PlayStation 3 Super Slim</option>
+                        <option value="ps3-slim" className="bg-card">PlayStation 3 Slim</option>
+                        <option value="ps3-fat" className="bg-card">PlayStation 3 Fat</option>
                       </select>
                     </div>
                     <div>
-                      <label className="block text-gray-300 mb-2">Durasi Rental</label>
+                      <label className="block text-muted-foreground mb-2">Durasi Rental</label>
                       <select
                         name="duration"
                         value={formData.duration}
                         onChange={handleInputChange}
-                        className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors"
+                        className="w-full bg-card/30 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors"
                         required
                       >
-                        <option value="" className="bg-gray-800">Pilih Durasi</option>
-                        <option value="1-day" className="bg-gray-800">1 Hari</option>
-                        <option value="3-days" className="bg-gray-800">3 Hari</option>
-                        <option value="1-week" className="bg-gray-800">1 Minggu</option>
-                        <option value="1-month" className="bg-gray-800">1 Bulan</option>
+                        <option value="" className="bg-card">Pilih Durasi</option>
+                        <option value="1-day" className="bg-card">1 Hari</option>
+                        <option value="3-days" className="bg-card">3 Hari</option>
+                        <option value="1-week" className="bg-card">1 Minggu</option>
+                        <option value="1-month" className="bg-card">1 Bulan</option>
                       </select>
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-gray-300 mb-2">Tanggal Mulai</label>
+                    <label className="block text-muted-foreground mb-2">Tanggal Mulai</label>
                     <input
                       type="date"
                       name="date"
                       value={formData.date}
                       onChange={handleInputChange}
-                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors"
+                      className="w-full bg-card/30 border border-border rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-primary transition-colors"
                       required
                     />
                   </div>
 
                   <div>
-                    <label className="block text-gray-300 mb-2">Pesan Tambahan</label>
+                    <label className="block text-muted-foreground mb-2">Pesan Tambahan</label>
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={4}
-                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors resize-none"
+                      className="w-full bg-card/30 border border-border rounded-lg px-4 py-3 text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-colors resize-none"
                       placeholder="Ada permintaan khusus? Tulis di sini..."
                     ></textarea>
                   </div>
 
                   <motion.button
                     type="submit"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
+                    className="w-full bg-primary hover:bg-primary-dark text-white py-4 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
                   >
                     <Send className="w-5 h-5" />
                     <span>Kirim Pesan</span>
@@ -671,28 +717,28 @@ export default function About() {
         {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.2 }}
           className="text-center"
         >
           <div className="bg-primary rounded-2xl p-8">
             <h3 className="text-3xl font-bold text-white mb-4">
               Siap Bergabung dengan Komunitas Orent?
             </h3>
-            <p className="text-xl text-gray-200 mb-8">
+            <p className="text-xl text-white mb-8">
               Mulai petualangan gaming Anda bersama kami hari ini!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/konsol">
                 <motion.button
-                  className="bg-white hover:bg-gray-100 text-blue-600 px-8 py-4 rounded-lg font-semibold transition-colors"
+                  className="bg-white hover:bg-gray-100 text-primary px-8 py-4 rounded-lg font-semibold transition-colors"
                 >
                   Lihat Konsol
                 </motion.button>
               </Link>
               <motion.button
                 onClick={() => document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' })}
-                className="border border-white/20 hover:bg-white/10 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+                className="border border-white hover:bg-white/10 text-white px-8 py-4 rounded-lg font-semibold transition-colors"
               >
                 Hubungi Kami
               </motion.button>

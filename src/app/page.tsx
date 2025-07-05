@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { 
-  Gamepad2, 
   Clock, 
   MapPin, 
   Phone, 
@@ -20,25 +20,28 @@ const consoles = [
     id: 1,
     name: 'PlayStation 4 Pro',
     price: '50.000',
-    image: '/ps4-pro.jpg',
-    specs: ['4K Gaming', '1TB Storage', '2 Controllers'],
+    image: '/ps4 pro_HD.png',
+    specs: ['4K Gaming', '1TB Storage', 'HDR Support', '2 Controllers'],
+    description: 'Nikmati gaming dengan resolusi 4K dan performa tinggi untuk game-game terbaru PlayStation.',
     available: true
   },
   {
     id: 2,
     name: 'PlayStation 4 Slim',
     price: '40.000',
-    image: '/ps4-slim.jpg',
-    specs: ['Full HD Gaming', '500GB Storage', '2 Controllers'],
+    image: '/ps4 slim_HD.png',
+    specs: ['Full HD Gaming', '500GB Storage', '2 Controllers', 'Compact Design'],
+    description: 'Desain lebih compact dengan pengalaman gaming PlayStation 4 yang tetap optimal.',
     available: true
   },
   {
     id: 3,
     name: 'PlayStation 3 Super Slim',
     price: '30.000',
-    image: '/ps3-slim.jpg',
-    specs: ['HD Gaming', '500GB Storage', '2 Controllers'],
-    available: false
+    image: '/ps3 slim_HD.png',
+    specs: ['HD Gaming', '500GB Storage', '2 Controllers', 'Backward Compatible'],
+    description: 'Koleksi game klasik PlayStation dengan desain super slim yang hemat tempat.',
+    available: true
   }
 ];
 
@@ -73,7 +76,7 @@ export default function Home() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20">
+      <section className="relative overflow-hidden py-20 bg-gradient-to-br from-background to-secondary/30">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -82,21 +85,25 @@ export default function Home() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
-                Sewa <span className="text-primary-blue">PlayStation</span> 
+                Sewa <span className="text-primary">PlayStation</span> 
                 <br />di Bandung
               </h2>
               <p className="text-xl text-muted-foreground mb-8">
-                Nikmati pengalaman gaming terbaik dengan PlayStation 3 & 4 
+                Nikmati pengalaman gaming terbaik dengan PlayStation 4 & 3 
                 berkualitas tinggi. Harga terjangkau, pelayanan terpercaya.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.button
-                  className="bg-primary text-primary-foreground font-semibold px-8 py-4 rounded-lg transition-all duration-300 border border-primary/60 relative hover:bg-primary/90"
+                  className="bg-primary text-primary-foreground font-semibold px-8 py-4 rounded-lg transition-all duration-300 border border-primary hover:bg-primary/90 hover:shadow-lg"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  Sewa Sekarang
+                  Mulai Sewa Sekarang
                 </motion.button>
                 <motion.button
-                  className="border border-border/50 hover:bg-accent/50 px-8 py-4 rounded-lg text-foreground font-semibold transition-colors"
+                  className="border border-border hover:border-primary hover:bg-secondary/80 px-8 py-4 rounded-lg text-foreground font-semibold transition-all duration-300"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   Lihat Konsol
                 </motion.button>
@@ -104,15 +111,20 @@ export default function Home() {
             </motion.div>
             
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
-              <div className="bg-primary/10 rounded-3xl p-8 backdrop-blur-sm border border-border">
-                <div className="w-full h-64 flex items-center justify-center">
-                  <Gamepad2 className="w-32 h-32 text-primary" />
-                </div>
+              <div className="bg-card/30 rounded-3xl p-8 backdrop-blur-sm border border-border overflow-hidden relative group">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <Image 
+                  src="/Orent logo_HD.png" 
+                  alt="Orent Station - Sewa PlayStation Bandung" 
+                  width={400}
+                  height={300}
+                  className="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
+                />
               </div>
             </motion.div>
           </div>
@@ -120,7 +132,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-secondary/50">
+      <section className="py-20 bg-gradient-to-b from-background to-secondary/30">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -129,7 +141,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h3 className="text-4xl font-bold text-foreground mb-4">Mengapa Pilih Orent?</h3>
-            <p className="text-muted-foreground text-lg">Kami berkomitmen memberikan pengalaman gaming terbaik</p>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Kami berkomitmen memberikan pengalaman gaming terbaik dengan layanan berkualitas dan konsol terawat</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -140,10 +152,13 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-card/80 backdrop-blur-sm border border-border rounded-xl p-6 text-center hover:bg-card hover:border-primary/60 transition-all duration-300"
+                whileHover={{ y: -5 }}
+                className="bg-card border border-border rounded-xl p-6 text-center hover:border-primary transition-all duration-300 shadow-sm hover:shadow-md"
               >
-                <feature.icon className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h4 className="text-xl font-semibold text-foreground mb-2">{feature.title}</h4>
+                <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5">
+                  <feature.icon className="w-8 h-8 text-primary" />
+                </div>
+                <h4 className="text-xl font-semibold text-foreground mb-3">{feature.title}</h4>
                 <p className="text-muted-foreground">{feature.description}</p>
               </motion.div>
             ))}
@@ -152,7 +167,7 @@ export default function Home() {
       </section>
 
       {/* Console Selection */}
-      <section className="py-20">
+      <section className="py-20" id="konsol">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -161,131 +176,145 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h3 className="text-4xl font-bold text-foreground mb-4">Pilih Konsol Favoritmu</h3>
-            <p className="text-muted-foreground text-lg">Tersedia PlayStation 3 dan PlayStation 4 dengan kondisi prima</p>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Tersedia PlayStation 4 dan PlayStation 3 dengan kondisi prima dan berbagai game terbaru
+            </p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {consoles.map((console, index) => (
-              <motion.div
-                key={console.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className={`bg-card/80 backdrop-blur-sm border rounded-xl p-6 cursor-pointer transition-all hover:bg-card ${
-                  selectedConsole === index ? 'border-primary border-2' : 'border-border'
-                }`}
-                onClick={() => setSelectedConsole(index)}
-              >
-                <div className="aspect-video bg-muted rounded-lg mb-4 flex items-center justify-center">
-                  <Gamepad2 className="w-16 h-16 text-muted-foreground" />
+            {consoles.map((console, index) => {
+              // Different background styles for each console to make them visually distinct
+              const cardStyles = [
+                'bg-gradient-to-br from-card to-card/80 border-2', // PS4 Pro - solid with gradient
+                'bg-card/90 backdrop-blur-sm border-2', // PS4 Slim - semi-transparent
+                'bg-secondary/30 backdrop-blur-md border-2' // PS3 - different background
+              ];
+              
+              return (
+                <motion.div
+                  key={console.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`${cardStyles[index]} rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg group ${
+                    selectedConsole === index ? 'border-primary shadow-lg' : 'border-border hover:border-primary/60'
+                  }`}
+                  onClick={() => setSelectedConsole(index)}
+                >
+                <div className="aspect-video bg-secondary/50 flex items-center justify-center p-6 relative overflow-hidden">
+                  <Image 
+                    src={console.image} 
+                    alt={console.name}
+                    width={280}
+                    height={200}
+                    className="max-w-full max-h-full object-contain transition-transform duration-500 ease-out group-hover:scale-105"
+                    style={{ width: 'auto', height: 'auto', maxWidth: '100%', maxHeight: '100%' }}
+                  />
                 </div>
                 
-                <h4 className="text-xl font-semibold text-foreground mb-2">{console.name}</h4>
-                <p className="text-2xl font-bold text-primary mb-4">Rp {console.price}/hari</p>
-                
-                <ul className="space-y-2 mb-4">
-                  {console.specs.map((spec, specIndex) => (
-                    <li key={specIndex} className="text-muted-foreground flex items-center">
-                      <div className="w-2 h-2 bg-primary rounded-full mr-2"></div>
-                      {spec}
-                    </li>
-                  ))}
-                </ul>
-                
-                <div className="flex items-center justify-between">
-                  <span className={`px-3 py-1 rounded-full text-sm ${
-                    console.available 
-                      ? 'bg-primary-teal/20 text-primary-teal' 
-                      : 'bg-primary-red/20 text-primary-red'
-                  }`}>
-                    {console.available ? 'Tersedia' : 'Disewa'}
-                  </span>
+                <div className="p-6">
+                  <h4 className="text-xl font-semibold text-foreground mb-2">{console.name}</h4>
+                  <p className="text-2xl font-bold text-primary mb-3">Rp {console.price}/hari</p>
+                  <p className="text-muted-foreground mb-4 line-clamp-2">{console.description}</p>
                   
-                  <motion.button
-                    disabled={!console.available}
-                    className={`px-4 py-2 rounded-lg font-semibold transition-colors ${
+                  <ul className="space-y-2 mb-4">
+                    {console.specs.map((spec, specIndex) => (
+                      <li key={specIndex} className="text-muted-foreground flex items-center">
+                        <div className="w-2 h-2 bg-primary rounded-full mr-2"></div>
+                        {spec}
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <div className="flex items-center justify-between mt-5">
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                       console.available 
-                        ? 'bg-primary text-primary-foreground hover:opacity-90 ps-border relative' 
-                        : 'bg-muted text-muted-foreground cursor-not-allowed'
-                    }`}
-                  >
-                    {console.available ? 'Sewa' : 'Tidak Tersedia'}
-                  </motion.button>
+                        ? 'bg-primary/20 text-primary border border-primary/30' 
+                        : 'bg-destructive/20 text-destructive border border-destructive/30'
+                    }`}>
+                      {console.available ? 'Tersedia' : 'Disewa'}
+                    </span>
+                    
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      disabled={!console.available}
+                      className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300 border-2 ${
+                        console.available 
+                          ? 'bg-primary text-white border-primary hover:bg-primary-dark hover:border-primary-dark shadow-md hover:shadow-lg' 
+                          : 'bg-muted text-muted-foreground border-muted cursor-not-allowed'
+                      }`}
+                    >
+                      {console.available ? 'Sewa' : 'Tidak Tersedia'}
+                    </motion.button>
+                  </div>
                 </div>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Contact Info */}
-      <section className="py-20 bg-card/50">
+      <section className="py-20 bg-card/20">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-4xl font-bold text-foreground mb-6">Hubungi Kami</h3>
-              <p className="text-muted-foreground text-lg mb-8">
-                Siap melayani Anda 24/7 untuk pengalaman gaming terbaik di Bandung
-              </p>
-              
-              <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <MapPin className="w-6 h-6 text-primary" />
-                  <span className="text-foreground">Bandung, Jawa Barat</span>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <Phone className="w-6 h-6 text-primary" />
-                  <span className="text-foreground">+62 812-3456-7890</span>
-                </div>
-                <div className="flex items-center space-x-4">
-                  <Mail className="w-6 h-6 text-primary" />
-                  <span className="text-foreground">info@orent.com</span>
-                </div>
-              </div>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h3 className="text-4xl font-bold text-foreground mb-6">Hubungi Kami</h3>
+            <p className="text-muted-foreground text-lg mb-8">
+              Siap melayani Anda 24/7 untuk pengalaman gaming terbaik di Bandung
+            </p>
             
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-card backdrop-blur-sm border border-border rounded-xl p-8"
-            >
-              <h4 className="text-2xl font-semibold text-foreground mb-6">Reservasi Cepat</h4>
-              <form className="space-y-4">
-                <input
-                  type="text"
-                  placeholder="Nama Lengkap"
-                  className="w-full px-4 py-3 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                />
-                <input
-                  type="tel"
-                  placeholder="Nomor WhatsApp"
-                  className="w-full px-4 py-3 bg-input border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                />
-                <select className="w-full px-4 py-3 bg-input border border-border rounded-lg text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
-                  <option value="">Pilih Konsol</option>
-                  <option value="ps4-pro">PlayStation 4 Pro</option>
-                  <option value="ps4-slim">PlayStation 4 Slim</option>
-                  <option value="ps3-slim">PlayStation 3 Super Slim</option>
-                </select>
-                <input
-                  type="date"
-                  className="w-full px-4 py-3 bg-input border border-border rounded-lg text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-                />
-                <motion.button
-                  type="submit"
-                  className="w-full bg-primary hover:bg-primary/90 py-3 rounded-lg text-primary-foreground font-semibold transition-all duration-300 border border-primary/30"
-                >
-                  Kirim Reservasi
-                </motion.button>
-              </form>
-            </motion.div>
-          </div>
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="bg-card backdrop-blur-sm border border-border rounded-xl p-6 text-center hover:border-primary transition-all duration-300 shadow-sm hover:shadow-md"
+              >
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <MapPin className="w-8 h-8 text-primary" />
+                </div>
+                <h4 className="text-lg font-semibold text-foreground mb-2">Lokasi</h4>
+                <p className="text-muted-foreground">Bandung, Jawa Barat</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="bg-card backdrop-blur-sm border border-border rounded-xl p-6 text-center hover:border-primary transition-all duration-300 shadow-sm hover:shadow-md"
+              >
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <Phone className="w-8 h-8 text-primary" />
+                </div>
+                <h4 className="text-lg font-semibold text-foreground mb-2">WhatsApp</h4>
+                <p className="text-muted-foreground">+62 812-3456-7890</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="bg-card backdrop-blur-sm border border-border rounded-xl p-6 text-center hover:border-primary transition-all duration-300 shadow-sm hover:shadow-md"
+              >
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <Mail className="w-8 h-8 text-primary" />
+                </div>
+                <h4 className="text-lg font-semibold text-foreground mb-2">Email</h4>
+                <p className="text-muted-foreground">info@orent.com</p>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

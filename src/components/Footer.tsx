@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Gamepad2, MapPin, Phone, Mail, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Gamepad2, MapPin, Phone, Mail, Facebook, Instagram } from 'lucide-react';
 import Link from 'next/link';
 
 const Footer = () => {
@@ -17,6 +17,18 @@ const Footer = () => {
     { href: '/terms', label: 'Syarat & Ketentuan' },
     { href: '/dashboard', label: 'Dashboard' },
   ];
+
+  // X Twitter Logo Component
+  const XTwitterIcon = ({ className }: { className?: string }) => (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153ZM17.61 20.644h2.039L6.486 3.24H4.298L17.61 20.644Z"/>
+    </svg>
+  );
 
   return (
     <footer className="bg-card/50 border-t border-border">
@@ -46,9 +58,9 @@ const Footer = () => {
               </motion.a>
               <motion.a
                 href="#"
-                className="w-10 h-10 bg-primary-teal rounded-full flex items-center justify-center text-primary-foreground hover:bg-primary-teal/80 transition-colors border border-transparent hover:border-primary-foreground"
+                className="w-10 h-10 bg-foreground rounded-full flex items-center justify-center text-background hover:bg-foreground/80 transition-colors border border-transparent hover:border-background"
               >
-                <Twitter className="w-5 h-5" />
+                <XTwitterIcon className="w-5 h-5" />
               </motion.a>
             </div>
           </div>
