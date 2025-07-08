@@ -31,34 +31,34 @@ const Footer = () => {
   );
 
   return (
-    <footer className="bg-card/50 border-t border-border">
+    <footer className="bg-[#4b5563] border-t border-border relative z-10" style={{ backgroundColor: '#333333', backgroundImage: 'none', backdropFilter: 'none' }}>
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <Gamepad2 className="w-8 h-8 text-primary" />
-              <span className="text-2xl font-bold text-foreground">Orent</span>
+              <Gamepad2 className="w-8 h-8 text-white" />
+              <span className="text-2xl font-bold text-white">Orent</span>
             </div>
-            <p className="text-muted-foreground">
+            <p className="text-gray-300">
               Sewa PlayStation 3 dan PlayStation 4 terpercaya di Bandung dengan harga terjangkau dan pelayanan terbaik.
             </p>
             <div className="flex space-x-4">
               <motion.a
                 href="#"
-                className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground hover:bg-primary/80 transition-colors border border-transparent hover:border-primary-foreground"
+                className="w-10 h-10 bg-transparent rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors border border-transparent"
               >
                 <Facebook className="w-5 h-5" />
               </motion.a>
               <motion.a
                 href="#"
-                className="w-10 h-10 bg-primary-red rounded-full flex items-center justify-center text-primary-foreground hover:bg-primary-red/80 transition-colors border border-transparent hover:border-primary-foreground"
+                className="w-10 h-10 bg-transparent rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors border border-transparent"
               >
                 <Instagram className="w-5 h-5" />
               </motion.a>
               <motion.a
                 href="#"
-                className="w-10 h-10 bg-foreground rounded-full flex items-center justify-center text-background hover:bg-foreground/80 transition-colors border border-transparent hover:border-background"
+                className="w-10 h-10 bg-transparent rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors border border-transparent"
               >
                 <XTwitterIcon className="w-5 h-5" />
               </motion.a>
@@ -67,13 +67,13 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">Menu Utama</h3>
+            <h3 className="text-lg font-semibold text-white">Menu Utama</h3>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-gray-300 hover:text-primary transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -84,13 +84,13 @@ const Footer = () => {
 
           {/* Company Links */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">Perusahaan</h3>
+            <h3 className="text-lg font-semibold text-white">Perusahaan</h3>
             <ul className="space-y-2">
               {companyLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors"
+                    className="text-gray-300 hover:text-primary transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -101,26 +101,26 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-foreground">Kontak</h3>
+            <h3 className="text-lg font-semibold text-white">Kontak</h3>
             <div className="space-y-3">
-              <div className="flex items-center space-x-3 text-muted-foreground">
-                <MapPin className="w-5 h-5 text-primary" />
+              <div className="flex items-center space-x-3 text-gray-300">
+                <MapPin className="w-5 h-5 text-white" />
                 <span>Bandung, Jawa Barat</span>
               </div>
-              <div className="flex items-center space-x-3 text-muted-foreground">
-                <Phone className="w-5 h-5 text-primary" />
+              <div className="flex items-center space-x-3 text-gray-300">
+                <Phone className="w-5 h-5 text-white" />
                 <span>+62 812-3456-7890</span>
               </div>
-              <div className="flex items-center space-x-3 text-muted-foreground">
-                <Mail className="w-5 h-5 text-primary" />
+              <div className="flex items-center space-x-3 text-gray-300">
+                <Mail className="w-5 h-5 text-white" />
                 <span>info@orent.com</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-border mt-8 pt-8 text-center">
-          <p className="text-muted-foreground">
+        <div className="border-t border-gray-500 mt-8 pt-8 text-center">
+          <p className="text-gray-300">
             &copy; 2025 Orent. Sewa PlayStation Terpercaya di Bandung. All rights reserved.
           </p>
         </div>

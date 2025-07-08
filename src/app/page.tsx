@@ -242,7 +242,7 @@ export default function Home() {
                       disabled={!console.available}
                       className={`px-6 py-2 rounded-lg font-semibold transition-all duration-300 border-2 ${
                         console.available 
-                          ? 'bg-primary text-white border-primary hover:bg-primary-dark hover:border-primary-dark shadow-md hover:shadow-lg' 
+                          ? 'bg-primary text-black border-primary hover:bg-primary-dark hover:border-primary-dark shadow-md hover:shadow-lg' 
                           : 'bg-muted text-muted-foreground border-muted cursor-not-allowed'
                       }`}
                     >
